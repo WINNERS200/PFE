@@ -21,9 +21,6 @@
       font-weight: 500;
       color: #0d6efd;
     }
-    .formateur-field {
-      background-color: #f8f9fa;
-    }
   </style>
 </head>
 <body class="bg-light">
@@ -42,7 +39,6 @@
             <option value="Master">Master</option>
           </select>
         </div>
-        
         <div class="col-md-6">
           <label for="specialization" class="form-label">Spécialisation</label>
           <select class="form-select" id="specialization" name="specialization" required disabled>
@@ -54,12 +50,25 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="module" class="form-label">Module</label>
-          <input type="text" class="form-control" id="module" name="module" placeholder="Nom du module" required>
+          <select class="form-select" id="module" name="module" required>
+            <option selected disabled>Choisissez un module</option>
+          </select>
         </div>
-
         <div class="col-md-6">
           <label for="formateur" class="form-label">Formateur</label>
-          <input type="text" class="form-control formateur-field" id="formateur" name="formateur" readonly>
+          <select class="form-select" id="formateur" name="formateur" required>
+            <option selected disabled>Choisissez un formateur</option>
+            <option>Pr. Mohammed ERRAIS</option>
+            <option>Pr. Khalid MOUSSAID</option>
+            <option>Pr. Brahim RAOUYANE</option>
+            <option>Pr. Mohamed RIDA</option>
+            <option>Pr. Noureddine ABGHOUR</option>
+            <option>Pr. Rim KOULALI</option>
+            <option>Pr. Amina ELOMRI</option>
+            <option>Pr. Tarik NAHHAL</option>
+            <option>Pr. Mounia MIYARA</option>
+            <option>Pr. Laila FETJAH</option>
+          </select>
         </div>
       </div>
 
@@ -68,12 +77,10 @@
           <label for="date" class="form-label">Date</label>
           <input type="date" class="form-control" id="date" name="date" required>
         </div>
-
         <div class="col-md-3">
           <label for="heure" class="form-label">Heure</label>
           <input type="time" class="form-control" id="heure" name="heure" required>
         </div>
-
         <div class="col-md-6">
           <label for="salle" class="form-label">Salle</label>
           <input type="text" class="form-control" id="salle" name="salle" placeholder="Ex: Salle A2" required>
@@ -103,7 +110,7 @@
           </tr>
         </thead>
         <tbody id="planning-table-body">
-          <!-- Lignes seront ajoutées dynamiquement -->
+          <!-- Lignes dynamiques ici -->
         </tbody>
       </table>
     </div>
@@ -111,77 +118,47 @@
 </div>
 
 <script>
-  // Mappage des spécialisations et formateurs
   const specializations = {
     "Licence": [
-      { 
-        code: "AASRI", 
-        name: "Administration Avancée des Systèmes et Réseaux Informatiques",
-        formateur: "Pr. Mohammed ERRAIS"
-      },
-      { 
-        code: "ASBDR", 
-        name: "Administration, Systèmes, Bases de Données et Réseaux",
-        formateur: "Pr. Khalid MOUSSAID"
-      },
-      { 
-        code: "DI", 
-        name: "Développement Informatique",
-        formateur: "Pr. Brahim RAOUYANE"
-      },
-      { 
-        code: "DWM", 
-        name: "Développement Web et Mobile",
-        formateur: "Pr. Mohamed RIDA"
-      },
-      { 
-        code: "FSD", 
-        name: "Développement Full Stack et DevOps",
-        formateur: "Pr. Noureddine ABGHOUR"
-      },
-      { 
-        code: "IRC", 
-        name: "Ingénierie Réseaux et Cloud Computing",
-        formateur: "Pr. Rim KOULALI"
-      }
+      { code: "AASRI", name: "Administration Avancée des Systèmes et Réseaux Informatiques" },
+      { code: "ASBDR", name: "Administration, Systèmes, Bases de Données et Réseaux" },
+      { code: "DI", name: "Développement Informatique" },
+      { code: "DWM", name: "Développement Web et Mobile" },
+      { code: "FSD", name: "Développement Full Stack et DevOps" },
+      { code: "IRC", name: "Ingénierie Réseaux et Cloud Computing" }
     ],
     "Master": [
-      { 
-        code: "BDC", 
-        name: "Big Data et Cloud Computing",
-        formateur: "Pr. Amina ELOMRI"
-      },
-      { 
-        code: "BISD", 
-        name: "Business Intelligence et Sciences de Données",
-        formateur: "Pr. Tarik NAHHAL"
-      },
-      { 
-        code: "MSI", 
-        name: "Management des Systèmes d'Information",
-        formateur: "Pr. Mounia MIYARA"
-      },
-      { 
-        code: "CC", 
-        name: "Cybersécurité et Cyberdéfense",
-        formateur: "Pr. Laila FETJAH"
-      }
+      { code: "BDC", name: "Big Data et Cloud Computing" },
+      { code: "BISD", name: "Business Intelligence et Sciences de Données" },
+      { code: "MSI", name: "Management des Systèmes d'Information" },
+      { code: "CC", name: "Cybersécurité et Cyberdéfense" }
     ]
   };
 
-  // DOM Elements
+  const modulesParSpecialisation = {
+    "AASRI": ["Linux avancé", "Administration réseaux", "Sécurité des systèmes"],
+    "ASBDR": ["Oracle SQL", "Administration SGBD", "Sécurité base de données"],
+    "DI": ["POO avec Java", "Structures de données", "Patrons de conception"],
+    "DWM": ["Laravel", "ReactJS", "API REST"],
+    "FSD": ["DevOps", "NodeJS", "Angular"],
+    "IRC": ["Cisco", "Virtualisation", "Cloud AWS"],
+    "BDC": ["BigQuery", "Spark", "NoSQL"],
+    "BISD": ["Power BI", "Data Mining", "SQL Server"],
+    "MSI": ["ERP", "Gestion de projet", "Audit SI"],
+    "CC": ["Sécurité réseau", "Pentest", "Cryptographie"]
+  };
+
   const niveauSelect = document.getElementById("niveau");
   const specializationSelect = document.getElementById("specialization");
-  const formateurInput = document.getElementById("formateur");
+  const moduleSelect = document.getElementById("module");
   const form = document.getElementById("form-planning");
   const tableBody = document.getElementById("planning-table-body");
 
-  // Gestion du changement de niveau
-  niveauSelect.addEventListener("change", function() {
+  niveauSelect.addEventListener("change", function () {
     const niveau = this.value;
     specializationSelect.innerHTML = '<option selected disabled>Choisir une spécialisation</option>';
-    formateurInput.value = "";
-    
+    moduleSelect.innerHTML = '<option selected disabled>Choisissez un module</option>';
+
     if (niveau) {
       specializationSelect.disabled = false;
       specializations[niveau].forEach(spec => {
@@ -195,42 +172,30 @@
     }
   });
 
-  // Gestion du changement de spécialisation
-  specializationSelect.addEventListener("change", function() {
-    const niveau = niveauSelect.value;
+  specializationSelect.addEventListener("change", function () {
     const specializationCode = this.value;
-    
-    if (niveau && specializationCode) {
-      const selectedSpec = specializations[niveau].find(s => s.code === specializationCode);
-      formateurInput.value = selectedSpec.formateur;
-    } else {
-      formateurInput.value = "";
-    }
+    moduleSelect.innerHTML = '<option selected disabled>Choisissez un module</option>';
+    const modules = modulesParSpecialisation[specializationCode] || [];
+    modules.forEach(mod => {
+      const opt = document.createElement("option");
+      opt.value = mod;
+      opt.textContent = mod;
+      moduleSelect.appendChild(opt);
+    });
   });
 
-  // Gestion de la soumission du formulaire
-  form.addEventListener("submit", function(e) {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Récupération des valeurs
-    const niveau = document.getElementById("niveau").value;
-    const specializationCode = document.getElementById("specialization").value;
-    const module = document.getElementById("module").value;
+    const niveau = niveauSelect.value;
+    const specializationCode = specializationSelect.value;
+    const specialization = [...specializations[niveau]].find(s => s.code === specializationCode);
+    const module = moduleSelect.value;
     const formateur = document.getElementById("formateur").value;
     const date = document.getElementById("date").value;
     const heure = document.getElementById("heure").value;
     const salle = document.getElementById("salle").value;
 
-    // Validation
-    if (!niveau || !specializationCode || !module || !formateur || !date || !heure || !salle) {
-      alert("Veuillez remplir tous les champs du formulaire");
-      return;
-    }
-
-    // Trouver le nom complet de la spécialisation
-    const specialization = specializations[niveau].find(s => s.code === specializationCode);
-
-    // Création d'une nouvelle ligne
     const nouvelleLigne = document.createElement("tr");
     nouvelleLigne.innerHTML = `
       <td>${niveau}</td>
@@ -242,17 +207,16 @@
       <td>${salle}</td>
       <td><button class="btn btn-danger btn-sm" onclick="supprimerLigne(this)">Supprimer</button></td>
     `;
-
     tableBody.appendChild(nouvelleLigne);
+
     form.reset();
     specializationSelect.disabled = true;
-    formateurInput.value = "";
+    moduleSelect.innerHTML = '<option selected disabled>Choisissez un module</option>';
   });
 
   function supprimerLigne(bouton) {
-    if (confirm("Êtes-vous sûr de vouloir supprimer cette planification ?")) {
-      const ligne = bouton.closest("tr");
-      ligne.remove();
+    if (confirm("Supprimer cette ligne ?")) {
+      bouton.closest("tr").remove();
     }
   }
 </script>
