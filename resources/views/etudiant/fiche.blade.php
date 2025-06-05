@@ -92,7 +92,6 @@
                         <select class="form-select form-select-lg" id="type_document" name="type_document" required>
                             <option value="" selected disabled>Choisir un type de document...</option>
                             <option value="fiche_identite">Fiche d'identité</option>
-                            <option value="certificat_scolarite">Certificat de scolarité</option>
                             <option value="attestation_inscription">Attestation d'inscription</option>
                         </select>
                         <div class="invalid-feedback">Veuillez sélectionner un type de document.</div>
@@ -154,19 +153,6 @@
                             <tr><th scope="row">Établissement</th><td>${nomFaculte}<br>${universite}</td></tr>
                         </tbody>
                     </table>
-                `;
-                break;
-            case 'certificat_scolarite':
-                documentTitle = "CERTIFICAT DE SCOLARITÉ";
-                documentBodyContent = `
-                    <p>Le Doyen de la ${nomFaculte} de l'${universite},</p>
-                    <p class="mt-3">Certifie que l'étudiant(e) :</p>
-                    <p class="text-center fw-bold">${nomComplet}</p>
-                    <p>Né(e) le : ${dateNaissanceFormattee}</p>
-                    <p>CNE : ${data.cne}</p>
-                    <p>CIN : ${data.cin}</p>
-                    <p class="mt-3">est régulièrement inscrit(e) à la ${nomFaculte} pour l'année universitaire ${anneeAcademique}.</p>
-                    <p>Le présent certificat est délivré à l'intéressé(e) pour servir et valoir ce que de droit.</p>
                 `;
                 break;
             case 'attestation_inscription':
