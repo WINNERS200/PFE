@@ -9,6 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+        <!-- Image d'en-tête alignée en haut à droite, au-dessus de la barre de navigation -->
+        <div class="position-absolute top-0 end-0 mt-3 me-3" style="z-index: 1050;">
+            <img src="/images/télécharger.png" alt="Image d'en-tête" class="img-fluid" style="max-width: 200px;">
+        </div>
+        
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Espace Étudiant</a>

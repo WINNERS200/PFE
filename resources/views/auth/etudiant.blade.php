@@ -120,11 +120,6 @@
     <form action="{{ route('register.etudiant') }}" method="GET">
         <button type="submit" class="btn-create">Créer un compte</button>
     </form>
-
-    {{-- Lien de mot de passe oublié --}}
-    <div class="link">
-        <a href="#" id="forgotPassword">Mot de passe oublié ?</a>
-    </div>
 </div>
 
 <script>
