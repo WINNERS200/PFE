@@ -15,6 +15,8 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\AdminController;
 
 
+use App\Http\Controllers\ResponsableController;
+
 // Page d'accueil
 Route::get('/', function () {
     return view('welcome');
@@ -60,8 +62,6 @@ Route::get('/dashboard/responsable', function () {
 })->name('responsable.dashboard');
 Route::post('/login/responsable', [LoginController::class, 'loginResponsable'])->name('login.responsable');
 Route::get('/dashboard/responsable', [ResponsableController::class, 'dashboard'])->name('responsable.dashboard');
-use App\Http\Controllers\ResponsableController;
-
 Route::get('/dashboard/responsable', [ResponsableController::class, 'index'])->name('dashboard.responsable');
 
 Route::post('/logout', function () {
@@ -120,3 +120,6 @@ Route::get('/admin/gestion_comptes', [AdminController::class, 'gestion_comptesFo
 Route::get('/admin/gestion_filiers', [AdminController::class, 'gestion_filiersForm'])->name('admin.gestion_filiers');
 Route::get('/admin/gestion_annees', [AdminController::class, 'gestion_anneesForm'])->name('admin.gestion_annees');
 
+// migration 
+
+Route::get('/etudiants', [EtudiantController::class, 'index']);

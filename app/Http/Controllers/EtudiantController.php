@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
+use App\Models\Etudiant;
+
+
 // filepath: app/Http/Controllers/EtudiantController.php
 
 class EtudiantController extends Controller
 {
+    public function index() {
+    $etudiants = Etudiant::all();
+    return view('etudiant.index', compact('etudiants'));
+}
     public function dashboard()
     {
         return view('auth.etudiant.dashboard');
