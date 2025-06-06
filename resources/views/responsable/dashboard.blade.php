@@ -56,11 +56,13 @@
     </style>
 </head>
 <body>
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-4">
-        <a class="navbar-brand text-primary fw-bold" href="#">🎓 Espace Responsable</a>
+        <a class="navbar-brand text-primary fw-bold d-flex align-items-center" href="#">
+            <img src="/images/télécharger.png" alt="Image d'en-tête" style="height: 48px; width: auto; margin-right: 12px;">
+            🎓 Espace Responsable
+        </a>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="btn btn-outline-primary">Déconnexion</button>

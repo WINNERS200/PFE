@@ -27,6 +27,15 @@
 </head>
 <body>
 
+<!-- Image d'en-tête centrée en haut de la page, positionnée au milieu en haut -->
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <img src="/images/télécharger.png" alt="Image d'en-tête" class="img-fluid d-block mx-auto" style="max-width: 320px; width: 100%; height: 120px;">
+        </div>
+    </div>
+</div>
+
 <div class="container mt-5">
     <div class="card dashboard-card">
         <div class="card-header bg-white text-center border-bottom">

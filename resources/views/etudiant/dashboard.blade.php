@@ -9,17 +9,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-        <!-- Image d'en-tête alignée en haut à droite, au-dessus de la barre de navigation -->
-        <div class="position-absolute top-0 end-0 mt-3 me-3" style="z-index: 1050;">
-            <img src="/images/télécharger.png" alt="Image d'en-tête" class="img-fluid" style="max-width: 200px;">
-        </div>
-        
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Espace Étudiant</a>
-    </div>
-</nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <!-- Titre centré -->
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <!-- Image d'en-tête alignée à gauche -->
+                        <img src="/images/télécharger.png" alt="Image d'en-tête" style="height: 48px; width: auto;align-items-center">
+                        <span class="ms-2 fs-4 fw-semibold" style="font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: 1px;">
+                            🎓 Espace Étudiant
+                        </span>
+                    </a>
+                </div>
+                <!-- Bouton de déconnexion à droite -->
+                <div class="ms-auto">
+                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-light">Déconnexion</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
 
 <div class="container mt-4">
     <h2 class="text-center mb-4">Bienvenue sur votre tableau de bord</h2>
