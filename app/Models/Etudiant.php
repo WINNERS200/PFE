@@ -1,12 +1,14 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Etudiant extends Model
+class Etudiant extends Authenticatable
 {
-    protected $fillable = [
-        'nom', 'prenom', 'email', 'date_naissance', 'cne'
-    ];
+    use Notifiable;
+
+    protected $table = 'etudiants';
+    protected $fillable = ['nom', 'prenom', 'email', 'password', 'date_naissance', 'lieu_naissance', 'numero_telephone', 'code_apogee', 'CNE'];
+    protected $hidden = ['password', 'remember_token'];
 }

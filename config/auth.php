@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -40,6 +39,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'etudiant' => [
+            'driver' => 'session',
+            'provider' => 'etudiants',
+        ],
+        'responsable' => [
+            'driver' => 'session',
+            'provider' => 'responsables',
+        ],
+        'administrateur' => [
+            'driver' => 'session',
+            'provider' => 'administrateurs',
+        ],
+        'enseignant' => [
+            'driver' => 'session',
+            'provider' => 'enseignants',
+        ],
     ],
 
     /*
@@ -64,7 +79,22 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-
+        'etudiants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Etudiant::class,
+        ],
+        'responsables' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Responsable::class,
+        ],
+        'administrateurs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Administrateur::class,
+        ],
+        'enseignants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Enseignant::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

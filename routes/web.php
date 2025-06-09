@@ -26,6 +26,9 @@ Route::get('/', function () {
 Route::get('/login/etudiant', [LoginController::class, 'etudiantLogin'])->name('login.etudiant');
 Route::get('/login/responsable', [LoginController::class, 'responsableLogin'])->name('login.responsable');
 Route::get('/login/admin', [LoginController::class, 'adminLogin'])->name('login.admin');
+Route::get('/login/enseignant', function () {
+    return view('auth.enseignant');
+})->name('login.enseignant');
 
 // Routes pour l'enregistrement
 Route::get('/register', function () {

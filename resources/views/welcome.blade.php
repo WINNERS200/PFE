@@ -59,6 +59,7 @@
     <a href="{{ route('login.etudiant') }}" class="btn">Espace Étudiant</a>
     <a href="{{ route('login.responsable') }}" class="btn">Espace Responsable</a>
     <a href="{{ route('login.admin') }}" class="btn">Espace Administrateur</a>
+    <a href="{{ route('login.enseignant') }}" class="btn">Espace Enseignant</a>
 </div>
 
 </body>
