@@ -86,8 +86,11 @@
         <form method="POST" action="{{ route('register.etudiant.submit') }}" id="registerForm">
             @csrf
             
-            <input type="text" name="name" id="name" placeholder="Nom complet" required>
-            <div id="nameError" class="error-message"></div>
+            <input type="text" name="nom" id="nom" placeholder="Nom" required>
+            <div id="nomError" class="error-message"></div>
+
+            <input type="text" name="prenom" id="prenom" placeholder="Prénom" required>
+            <div id="prenomError" class="error-message"></div>
             
             <input type="email" name="email" id="email" placeholder="Adresse e-mail" required>
             <div id="emailError" class="error-message"></div>
@@ -106,109 +109,124 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const registerForm = document.getElementById('registerForm');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const confirmPasswordInput = document.getElementById('confirmPassword');
-        
-        // Validation du nom
-        nameInput.addEventListener('input', function() {
-            if (this.value.length < 3) {
-                document.getElementById('nameError').textContent = 'Le nom doit contenir au moins 3 caractères';
-                document.getElementById('nameError').style.display = 'block';
-                this.classList.add('input-error');
-            } else {
-                document.getElementById('nameError').style.display = 'none';
-                this.classList.remove('input-error');
-            }
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    const registerForm = document.getElementById('registerForm');
+    const nomInput = document.getElementById('nom');
+    const prenomInput = document.getElementById('prenom');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
 
-        // Validation de l'email
-        emailInput.addEventListener('input', function() {
-            if (!this.value.includes('@') || !this.value.includes('.')) {
-                document.getElementById('emailError').textContent = 'Veuillez entrer une adresse email valide';
-                document.getElementById('emailError').style.display = 'block';
-                this.classList.add('input-error');
-            } else {
-                document.getElementById('emailError').style.display = 'none';
-                this.classList.remove('input-error');
-            }
-        });
-
-        // Validation du mot de passe
-        passwordInput.addEventListener('input', function() {
-            if (this.value.length < 8) {
-                document.getElementById('passwordError').textContent = 'Le mot de passe doit contenir au moins 8 caractères';
-                document.getElementById('passwordError').style.display = 'block';
-                this.classList.add('input-error');
-            } else {
-                document.getElementById('passwordError').style.display = 'none';
-                this.classList.remove('input-error');
-            }
-            
-            // Vérifier la correspondance des mots de passe
-            if (confirmPasswordInput.value && this.value !== confirmPasswordInput.value) {
-                document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas';
-                document.getElementById('confirmPasswordError').style.display = 'block';
-                confirmPasswordInput.classList.add('input-error');
-            }
-        });
-
-        // Validation de la confirmation du mot de passe
-        confirmPasswordInput.addEventListener('input', function() {
-            if (this.value !== passwordInput.value) {
-                document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas';
-                document.getElementById('confirmPasswordError').style.display = 'block';
-                this.classList.add('input-error');
-            } else {
-                document.getElementById('confirmPasswordError').style.display = 'none';
-                this.classList.remove('input-error');
-            }
-        });
-
-        // Validation finale avant soumission
-        registerForm.addEventListener('submit', function(e) {
-            let isValid = true;
-            
-            // Validation du nom
-            if (nameInput.value.length < 3) {
-                document.getElementById('nameError').textContent = 'Le nom doit contenir au moins 3 caractères';
-                document.getElementById('nameError').style.display = 'block';
-                nameInput.classList.add('input-error');
-                isValid = false;
-            }
-            
-            // Validation de l'email
-            if (!emailInput.value.includes('@') || !emailInput.value.includes('.')) {
-                document.getElementById('emailError').textContent = 'Veuillez entrer une adresse email valide';
-                document.getElementById('emailError').style.display = 'block';
-                emailInput.classList.add('input-error');
-                isValid = false;
-            }
-            
-            // Validation du mot de passe
-            if (passwordInput.value.length < 8) {
-                document.getElementById('passwordError').textContent = 'Le mot de passe doit contenir au moins 8 caractères';
-                document.getElementById('passwordError').style.display = 'block';
-                passwordInput.classList.add('input-error');
-                isValid = false;
-            }
-            
-            // Validation de la confirmation
-            if (passwordInput.value !== confirmPasswordInput.value) {
-                document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas';
-                document.getElementById('confirmPasswordError').style.display = 'block';
-                confirmPasswordInput.classList.add('input-error');
-                isValid = false;
-            }
-            
-            if (!isValid) {
-                e.preventDefault();
-            }
-        });
+    // Validation du nom
+    nomInput.addEventListener('input', function() {
+        if (this.value.length < 2) {
+            document.getElementById('nomError').textContent = 'Le nom doit contenir au moins 2 caractères';
+            document.getElementById('nomError').style.display = 'block';
+            this.classList.add('input-error');
+        } else {
+            document.getElementById('nomError').style.display = 'none';
+            this.classList.remove('input-error');
+        }
     });
-    </script>
+
+    // Validation du prénom
+    prenomInput.addEventListener('input', function() {
+        if (this.value.length < 2) {
+            document.getElementById('prenomError').textContent = 'Le prénom doit contenir au moins 2 caractères';
+            document.getElementById('prenomError').style.display = 'block';
+            this.classList.add('input-error');
+        } else {
+            document.getElementById('prenomError').style.display = 'none';
+            this.classList.remove('input-error');
+        }
+    });
+
+    // Validation de l'email
+    emailInput.addEventListener('input', function() {
+        if (!this.value.includes('@') || !this.value.includes('.')) {
+            document.getElementById('emailError').textContent = 'Veuillez entrer une adresse email valide';
+            document.getElementById('emailError').style.display = 'block';
+            this.classList.add('input-error');
+        } else {
+            document.getElementById('emailError').style.display = 'none';
+            this.classList.remove('input-error');
+        }
+    });
+
+    // Validation du mot de passe
+    passwordInput.addEventListener('input', function() {
+        if (this.value.length < 8) {
+            document.getElementById('passwordError').textContent = 'Le mot de passe doit contenir au moins 8 caractères';
+            document.getElementById('passwordError').style.display = 'block';
+            this.classList.add('input-error');
+        } else {
+            document.getElementById('passwordError').style.display = 'none';
+            this.classList.remove('input-error');
+        }
+
+        // Vérifier la correspondance des mots de passe
+        if (confirmPasswordInput.value && this.value !== confirmPasswordInput.value) {
+            document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas';
+            document.getElementById('confirmPasswordError').style.display = 'block';
+            confirmPasswordInput.classList.add('input-error');
+        }
+    });
+
+    // Validation de la confirmation
+    confirmPasswordInput.addEventListener('input', function() {
+        if (this.value !== passwordInput.value) {
+            document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas';
+            document.getElementById('confirmPasswordError').style.display = 'block';
+            this.classList.add('input-error');
+        } else {
+            document.getElementById('confirmPasswordError').style.display = 'none';
+            this.classList.remove('input-error');
+        }
+    });
+
+    // Validation finale avant soumission
+    registerForm.addEventListener('submit', function(e) {
+        let isValid = true;
+
+        if (nomInput.value.length < 2) {
+            document.getElementById('nomError').textContent = 'Le nom doit contenir au moins 2 caractères';
+            document.getElementById('nomError').style.display = 'block';
+            nomInput.classList.add('input-error');
+            isValid = false;
+        }
+
+        if (prenomInput.value.length < 2) {
+            document.getElementById('prenomError').textContent = 'Le prénom doit contenir au moins 2 caractères';
+            document.getElementById('prenomError').style.display = 'block';
+            prenomInput.classList.add('input-error');
+            isValid = false;
+        }
+
+        if (!emailInput.value.includes('@') || !emailInput.value.includes('.')) {
+            document.getElementById('emailError').textContent = 'Veuillez entrer une adresse email valide';
+            document.getElementById('emailError').style.display = 'block';
+            emailInput.classList.add('input-error');
+            isValid = false;
+        }
+
+        if (passwordInput.value.length < 8) {
+            document.getElementById('passwordError').textContent = 'Le mot de passe doit contenir au moins 8 caractères';
+            document.getElementById('passwordError').style.display = 'block';
+            passwordInput.classList.add('input-error');
+            isValid = false;
+        }
+
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas';
+            document.getElementById('confirmPasswordError').style.display = 'block';
+            confirmPasswordInput.classList.add('input-error');
+            isValid = false;
+        }
+
+        if (!isValid) e.preventDefault();
+    });
+});
+</script>
+
 </body>
 </html>

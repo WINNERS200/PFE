@@ -18,6 +18,7 @@ return new class extends Migration
         $table->string('email')->unique();
         $table->date('date_naissance');
         $table->string('cne')->unique();
+        $table->string('mot de passe')->unique();
         $table->timestamps();
     });
     }
